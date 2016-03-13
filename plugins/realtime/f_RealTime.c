@@ -1,26 +1,25 @@
 /*
  * RealTime - Linux Port of the RealTime NWNX2 plugin by Rob Lobbe
  * Copyright (C) 2016 Nela Melin (nela@tomb.org.uk)
- *     
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- */ 
+ */
 
 #include "NWNXRealTime.h"
 
-static struct tm *now_tm(struct tm *now)
-{
+static struct tm *now_tm(struct tm *now) {
     time_t now_seconds;
 
     time(&now_seconds);
@@ -28,8 +27,7 @@ static struct tm *now_tm(struct tm *now)
     return localtime_r(&now_seconds, now);
 }
 
-static struct tm *loadtime_tm(struct tm *loadtime)
-{
+static struct tm *loadtime_tm(struct tm *loadtime) {
     time_t loadtime_seconds = C_getLoadTime().tv_sec;
 
     return localtime_r(&loadtime_seconds, loadtime);
@@ -38,7 +36,7 @@ static struct tm *loadtime_tm(struct tm *loadtime)
 void Func_Ticks(CGameObject *ob, char *value)
 {
     snprintf(value, strlen(value), "%lld",
-            (long long) time(NULL) - EPOCH_SHIFT);
+             (long long) time(NULL) - EPOCH_SHIFT);
 }
 
 void Func_Date(CGameObject *ob, char *value)
@@ -71,7 +69,7 @@ void Func_Uptime(CGameObject *ob, char *value)
     time_t uptime_seconds = time(NULL) - C_getLoadTime().tv_sec;
 
     strftime(value, strlen(value), "%H:%M:%S",
-            gmtime_r(&uptime_seconds, &uptime));
+             gmtime_r(&uptime_seconds, &uptime));
 }
 
 void Func_DayFull(CGameObject *ob, char *value)
@@ -158,7 +156,7 @@ void Func_UpDays(CGameObject *ob, char *value)
     time_t uptime_seconds = time(NULL) - C_getLoadTime().tv_sec;
 
     snprintf(value, strlen(value), "%lld",
-            (long long) uptime_seconds / SECONDS_PER_DAY);
+             (long long) uptime_seconds / SECONDS_PER_DAY);
 }
 
 void Func_UpHours(CGameObject *ob, char *value)
@@ -167,7 +165,7 @@ void Func_UpHours(CGameObject *ob, char *value)
     time_t uptime_seconds = time(NULL) - C_getLoadTime().tv_sec;
 
     snprintf(value, strlen(value), "%lld",
-            (long long) uptime_seconds / SECONDS_PER_HOUR);
+             (long long) uptime_seconds / SECONDS_PER_HOUR);
 }
 void Func_UpMinutes(CGameObject *ob, char *value)
 {
@@ -175,7 +173,7 @@ void Func_UpMinutes(CGameObject *ob, char *value)
     time_t uptime_seconds = time(NULL) - C_getLoadTime().tv_sec;
 
     snprintf(value, strlen(value), "%lld",
-            (long long) uptime_seconds / SECONDS_PER_MINUTE);
+             (long long) uptime_seconds / SECONDS_PER_MINUTE);
 }
 
 void Func_UpSeconds(CGameObject *ob, char *value)
@@ -189,10 +187,10 @@ void Func_UpSeconds(CGameObject *ob, char *value)
 void Func_UpMilliseconds(CGameObject *ob, char *value)
 {
     struct timeval now, uptime, loadtime = C_getLoadTime();
-    
+
     gettimeofday(&now, NULL);
     timersub(&now, &loadtime, &uptime);
 
     snprintf(value, strlen(value), "%lld",
-            ((long long int) uptime.tv_sec * 1000) + (uptime.tv_usec / 1000));
+             ((long long int) uptime.tv_sec * 1000) + (uptime.tv_usec / 1000));
 }

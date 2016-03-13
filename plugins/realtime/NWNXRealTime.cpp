@@ -1,24 +1,24 @@
 /*
  * RealTime - Linux Port of the RealTime NWNX2 plugin by Rob Lobbe
  * Copyright (C) 2016 Nela Melin (nela@tomb.org.uk)
- * 
+ *
  * RealTime - Implementation of the RealTime class (for NWNX2)
  * Copyright (C) 2007 Rob Lobbe (Gryphyn, gryphyn@thefold.org)
- *     
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- */ 
+ */
 
 #include <string.h>
 #include <errno.h>
@@ -29,7 +29,7 @@
 CNWNXRealTime::CNWNXRealTime()
 {
     /* Store server start time for uptime calculations. */
-    if(gettimeofday(&loadTime, NULL) < 0)
+    if (gettimeofday(&loadTime, NULL) < 0)
         Log(0, "Error: gettimeofday: %s\n", strerror(errno));
 }
 
@@ -59,7 +59,7 @@ bool CNWNXRealTime::OnCreate(gline *config, const char *LogDir)
     char log[MAX_PATH];
     sprintf(log, "%s/nwnx_realtime.log", LogDir);
 
-    if(!CNWNXBase::OnCreate(config, log))
+    if (!CNWNXBase::OnCreate(config, log))
         return false;
 
     Log(0, "NWNX RealTime plugin v2.0\n");
@@ -70,13 +70,11 @@ bool CNWNXRealTime::OnCreate(gline *config, const char *LogDir)
     return true;
 }
 
-struct timeval CNWNXRealTime::getLoadTime()
-{
+struct timeval CNWNXRealTime::getLoadTime() {
     return loadTime;
 }
 
-struct timeval C_getLoadTime(void)
-{
+struct timeval C_getLoadTime(void) {
     return RealTime.getLoadTime();
 }
 
