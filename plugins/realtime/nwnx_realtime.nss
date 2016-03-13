@@ -109,7 +109,7 @@ int GetServerUpMilliseconds()
     return StringToInt(GetRealTime("UPMILLISECONDS"));
 }
 
-int GetServerTicks() number of seconds since January 1st 2000
+int GetServerTicks()
 {
     return StringToInt(GetRealTime("TICKS"));
 }

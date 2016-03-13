@@ -29,7 +29,7 @@
 #define SECONDS_PER_MINUTE  (60)
 #define SECONDS_PER_HOUR    (60 * SECONDS_PER_MINUTE)
 #define SECONDS_PER_DAY     (24 * SECONDS_PER_HOUR)
-#define EPOCH_SHIFT         (946684800) /* Seconds(1970 -> 2000) */
+#define EPOCH_SHIFT         (0)
 
 #ifdef __cplusplus
 extern "C" {

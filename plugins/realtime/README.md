@@ -35,5 +35,5 @@ Any usage or library errors are printed to the plugin log at ```logs.0/nwnx_real
 Added by special request for a PW that uses the RealTime plugin:
 
 ```c
-int GetServerTicks(); /* Number of seconds since January 1st 2000 (UTC) */
+int GetServerTicks(); /* Number of seconds since January 1st 1970 (UTC) */
 ```
